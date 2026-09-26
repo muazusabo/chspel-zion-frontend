@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Bible study fallback image">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#2d3748"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" x2="1">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#f4d98a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="220" y="140" width="1160" height="630" rx="36" fill="#0b1220" opacity="0.62"/>
+  <rect x="360" y="240" width="270" height="360" rx="18" fill="#f8fafc" opacity="0.9"/>
+  <rect x="660" y="240" width="220" height="360" rx="18" fill="url(#gold)" opacity="0.9"/>
+  <rect x="910" y="240" width="270" height="360" rx="18" fill="#f8fafc" opacity="0.8"/>
+  <path d="M440 620 L525 420 L610 620 Z" fill="#d4af37" opacity="0.9"/>
+  <text x="800" y="760" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="62" fill="#f8fafc" letter-spacing="8">BIBLE STUDY</text>
+</svg>
