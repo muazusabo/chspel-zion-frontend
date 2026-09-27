@@ -16,16 +16,22 @@ export default function AdminHomepagePage() {
   const { message, error, save, setError } = useSavedMessage();
   const heroInputRef = useRef<HTMLInputElement>(null);
   const welcomeInputRef = useRef<HTMLInputElement>(null);
-  const [uploadingField, setUploadingField] = useState<'hero' | 'welcome' | null>(null);
+  const imageSectionInputRef = useRef<HTMLInputElement>(null);
+  const [uploadingField, setUploadingField] = useState<'hero' | 'welcome' | 'section' | null>(null);
 
   useEffect(() => {
     api.get<HomepageContent>('/api/homepage', { skipAuth: true }).then(reset);
   }, [reset]);
 
-  const uploadField = async (field: 'heroImageUrl' | 'welcomeImageUrl', ref: React.RefObject<HTMLInputElement>) => {
+  const uploadField = async (
+    field: 'heroImageUrl' | 'welcomeImageUrl' | 'imageSectionUrl',
+    ref: React.RefObject<HTMLInputElement>,
+  ) => {
     const file = ref.current?.files?.[0];
     if (!file) return;
-    setUploadingField(field === 'heroImageUrl' ? 'hero' : 'welcome');
+    setUploadingField(
+      field === 'heroImageUrl' ? 'hero' : field === 'welcomeImageUrl' ? 'welcome' : 'section',
+    );
     try {
       const { url } = await uploadImage(file, 'homepage');
       setValue(field, url, { shouldDirty: true });
@@ -48,7 +54,7 @@ export default function AdminHomepagePage() {
 
   return (
     <>
-      <AdminPageHeader title="Homepage" description="Edit the hero section and welcome message" />
+      <AdminPageHeader title="Homepage" description="Edit homepage text and images" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 max-w-xl">
         <div>
           <Label htmlFor="heroTitle">Hero Title</Label>
@@ -73,6 +79,18 @@ export default function AdminHomepagePage() {
           />
           <Input id="heroImageUrl" value={watch('heroImageUrl') ?? ''} onChange={(e) => setValue('heroImageUrl', e.target.value)} className="mt-2" placeholder="Uploaded image URL will appear here" />
           {uploadingField === 'hero' && <p className="mt-2 text-sm text-ink-600">Uploading hero image…</p>}
+        </div>
+        <div>
+          <Label>Faith, Together Image</Label>
+          <input
+            ref={imageSectionInputRef}
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+            className="mt-2 block w-full text-sm text-slate-500 file:mr-4 file:rounded-md file:border-0 file:bg-gold-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-ink"
+            onChange={() => uploadField('imageSectionUrl', imageSectionInputRef)}
+          />
+          <Input id="imageSectionUrl" value={watch('imageSectionUrl') ?? ''} onChange={(e) => setValue('imageSectionUrl', e.target.value)} className="mt-2" placeholder="Uploaded image URL will appear here" />
+          {uploadingField === 'section' && <p className="mt-2 text-sm text-ink-600">Uploading section image…</p>}
         </div>
         <div>
           <Label htmlFor="welcomeMessage">Welcome Message</Label>

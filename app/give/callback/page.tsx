@@ -6,10 +6,9 @@ export default function OfflineRequestPage() {
   return (
     <section className="container max-w-md py-24 text-center">
       <Landmark className="mx-auto mb-5 text-gold-700" size={40} />
-      <h1 className="mb-3 text-2xl">Offline giving requests</h1>
+      <h1 className="mb-3 text-2xl">give generosely</h1>
       <p className="mb-8 text-sm leading-relaxed text-slate-600">
-        Make your transfer to the chapel account, then submit the transfer details from your dashboard. An approved receipt will become available after admin review.
-      </p>
+Luke 6:38: Promises that generosity is met with abundant return.      </p>
       <div className="flex justify-center gap-3">
         <Link href="/give/account"><Button variant="outline"><Landmark size={16} /> Account details</Button></Link>
         <Link href="/dashboard"><Button variant="gold"><Receipt size={16} /> Dashboard</Button></Link>

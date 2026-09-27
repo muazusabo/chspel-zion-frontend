@@ -88,7 +88,7 @@ export default function GivePage() {
           <div className="mb-5">
             <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Chapel account</p>
             <h2 className="mt-1 font-display text-xl">Transfer details</h2>
-            <p className="mt-2 text-sm text-slate-500">Use these details to complete your offline gift.</p>
+            <p className="mt-2 text-sm text-slate-500">Use these details to complete your giving.</p>
           </div>
           {accountLoading && <p className="text-sm text-slate-500">Loading transfer details…</p>}
           {!accountLoading && accountError && (
@@ -118,9 +118,9 @@ export default function GivePage() {
         {!loading && !user ? (
           <div className="rounded-md border border-ink-100 p-8 text-center">
             <HandCoins className="mx-auto text-gold-700 mb-4" size={28} />
-            <p className="font-display text-lg mb-2">Sign in to submit an offline gift</p>
+            <p className="font-display text-lg mb-2">Sign in to submit your giving</p>
             <p className="text-sm text-slate-600 mb-6">
-              Create a free account or log in so we can record your bank transfer and send you a receipt after admin approval.
+              gives toward the fellowship.
             </p>
             <div className="flex gap-3 justify-center">
               <Link href="/login"><Button variant="outline">Login</Button></Link>

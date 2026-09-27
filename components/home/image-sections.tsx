@@ -1,12 +1,18 @@
 import Image from 'next/image';
+import type { HomepageContent } from '@/types';
 
-export function ImageSections() {
+export function ImageSections({ content }: { content: HomepageContent }) {
+  const imageUrl =
+    content.imageSectionUrl && !content.imageSectionUrl.startsWith('[')
+      ? content.imageSectionUrl
+      : '/images/bible-sty.jpg';
+
   return (
     <section className="bg-ink-900 py-16 text-paper sm:py-20 md:py-24">
       <div className="container grid items-center gap-10 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
         <div className="relative aspect-[4/3] overflow-hidden rounded-md bg-ink-800">
           <Image
-            src="/images/bible-sty.jpg"
+            src={imageUrl}
             alt="Students gathered for Bible study"
             fill
             sizes="(max-width: 768px) 100vw, 58vw"

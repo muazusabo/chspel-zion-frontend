@@ -149,6 +149,7 @@ export interface HomepageContent {
   heroImageUrl?: string | null;
   welcomeMessage?: string | null;
   welcomeImageUrl?: string | null;
+  imageSectionUrl?: string | null;
   missionPreview?: string | null;
   visionPreview?: string | null;
 }

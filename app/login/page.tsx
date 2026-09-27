@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 const schema = z.object({
-  email: z.string().email('Enter a valid email'),
+  email: z.string().trim().email('Enter a valid email'),
   password: z.string().min(1, 'Enter your password'),
 });
 type FormValues = z.infer<typeof schema>;

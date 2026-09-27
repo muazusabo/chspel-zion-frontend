@@ -36,7 +36,7 @@ export default async function HomePage() {
       <Advertisement />
       <Welcome content={homepage} />
       <ScriptureStrip scripture={scripture} />
-      <ImageSections />
+      <ImageSections content={homepage} />
       <UpcomingEvents />
     </>
   );
