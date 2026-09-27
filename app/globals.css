@@ -4,8 +4,14 @@
 
 @layer base {
   :root {
-    --font-fraunces: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-    --font-inter: 'Inter', 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    --font-fraunces: 'Fraunces Variable';
+    --font-inter: 'DM Sans Variable';
+    --site-background: #faf9f6;
+    --site-surface: #fffefb;
+    --site-border: #e5e4df;
+    --site-navy: #101a2b;
+    --site-gold: #b8924a;
+    --site-radius: 8px;
   }
 
   * {
@@ -14,23 +20,22 @@
 
   html {
     scroll-behavior: smooth;
-    background: #fffbf3;
+    background: var(--site-background);
     overflow-x: hidden;
   }
 
   body {
     @apply bg-paper text-ink font-sans antialiased;
-    background-image: radial-gradient(circle at top, rgba(184, 146, 74, 0.08), transparent 28%),
-      linear-gradient(to bottom, #fffbf3 0%, #fffefb 100%);
+    background: var(--site-background);
   }
 
   a {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-200 ease-out;
   }
 
   h1, h2, h3, h4 {
-    @apply font-sans font-semibold text-ink;
-    letter-spacing: -0.01em;
+    @apply font-display font-semibold text-ink;
+    letter-spacing: 0;
   }
 
   :focus-visible {
@@ -55,7 +60,7 @@
     }
 
     body {
-      background: #f4f8fb;
+      background: var(--site-background);
     }
 
     .fcs-receipt-print {

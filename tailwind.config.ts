@@ -53,10 +53,10 @@ const config: Config = {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
-        sm: '4px',
-        DEFAULT: '6px',
+        sm: '6px',
+        DEFAULT: '8px',
         md: '8px',
-        lg: '12px',
+        lg: '8px',
       },
       maxWidth: {
         prose: '68ch',

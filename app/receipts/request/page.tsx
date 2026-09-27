@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
+import { useAuth } from '@/lib/auth-context';
 import { formatCurrency, formatDate } from '@/lib/utils';
 import { RequireAuth } from '@/components/shared/require-auth';
 import { Loading } from '@/components/shared/loading';
@@ -13,18 +14,24 @@ import type { Transaction } from '@/types';
 
 interface ReceiptRequestFormState {
   transactionId: string;
-  firstName: string;
-  surname: string;
+  fullName: string;
 }
 
 function RequestReceiptInner() {
   const router = useRouter();
+  const { user } = useAuth();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [selected, setSelected] = useState<Transaction | null>(null);
-  const [form, setForm] = useState<ReceiptRequestFormState>({ transactionId: '', firstName: '', surname: '' });
+  const [form, setForm] = useState<ReceiptRequestFormState>({ transactionId: '', fullName: '' });
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (user?.fullName) {
+      setForm((prev) => ({ ...prev, fullName: prev.fullName || user.fullName }));
+    }
+  }, [user?.fullName]);
 
   useEffect(() => {
     api.get<Transaction[]>('/api/payments/mine')
@@ -45,13 +52,11 @@ function RequestReceiptInner() {
     setSubmitting(true);
     setError(null);
 
-    const requestedName = [form.firstName, form.surname].map((value) => value.trim()).filter(Boolean).join(' ');
+    const requestedName = form.fullName.trim();
 
     try {
       await api.post('/api/receipts/request', {
         transactionId: form.transactionId,
-        firstName: form.firstName,
-        surname: form.surname,
         requestedName,
       });
       router.push('/receipts');
@@ -116,26 +121,16 @@ function RequestReceiptInner() {
               </div>
             )}
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div>
               <div>
-                <Label htmlFor="firstName">FIRST NAME</Label>
+                <Label htmlFor="fullName">FULL NAME</Label>
                 <Input
-                  id="firstName"
-                  value={form.firstName}
-                  onChange={(event) => setForm((prev) => ({ ...prev, firstName: event.target.value }))}
-                  placeholder="Enter your first name"
-                  className="mt-2"
-                  required
-                />
-              </div>
-
-              <div>
-                <Label htmlFor="surname">SURNAME</Label>
-                <Input
-                  id="surname"
-                  value={form.surname}
-                  onChange={(event) => setForm((prev) => ({ ...prev, surname: event.target.value }))}
-                  placeholder="Enter your surname"
+                  id="fullName"
+                  name="fullName"
+                  autoComplete="name"
+                  value={form.fullName}
+                  onChange={(event) => setForm((prev) => ({ ...prev, fullName: event.target.value }))}
+                  placeholder="Enter your full name"
                   className="mt-2"
                   required
                 />
@@ -143,11 +138,11 @@ function RequestReceiptInner() {
             </div>
 
             <div className="mt-2 text-xs text-slate-500">
-              This name will appear exactly on the final receipt: { [form.firstName, form.surname].map((value) => value.trim()).filter(Boolean).join(' ') || 'Full name preview' }.
+              Name on receipt: {form.fullName.trim() || 'Full name preview'}.
             </div>
 
             <div className="flex justify-end pt-2">
-              <Button type="submit" variant="gold" disabled={submitting || !form.transactionId || !form.firstName.trim() || !form.surname.trim()}>
+              <Button type="submit" variant="gold" disabled={submitting || !form.transactionId || !form.fullName.trim()}>
                 {submitting ? 'Submitting…' : 'Submit Receipt Request'}
               </Button>
             </div>

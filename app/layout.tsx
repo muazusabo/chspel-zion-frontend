@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import '@fontsource-variable/dm-sans';
+import '@fontsource-variable/fraunces';
 import './globals.css';
 import { AuthProvider } from '@/lib/auth-context';
 import { Navbar } from '@/components/layout/navbar';

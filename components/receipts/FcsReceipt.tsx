@@ -35,58 +35,74 @@ export function FcsReceipt({
   const [nairaAmount, koboAmount] = formattedAmount.split('.');
 
   return (
-    <div className="fcs-receipt-print mx-auto aspect-[3/2] w-full max-w-[960px] overflow-hidden border border-[#315f91] bg-[#f4f8fb] p-[3.5%] font-serif text-[#174a7c] print:border-[#315f91] print:shadow-none">
-      <div className="flex h-full flex-col text-[clamp(8px,1.35vw,14px)] leading-tight">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex items-center gap-[1.5%]">
-            <div className="relative h-[clamp(34px,7vw,72px)] w-[clamp(34px,7vw,72px)] shrink-0 overflow-hidden rounded-full border-2 border-[#174a7c] bg-[#f8fbfd]">
-              <Image src="/images/logo.jfif" alt="FCS logo" fill className="object-cover" sizes="72px" />
+    <div className="fcs-receipt-print mx-auto aspect-[3/2] w-full max-w-[960px] overflow-hidden rounded-md border border-[#d9e0e8] bg-white p-[3%] font-sans text-[#142b45] shadow-[0_16px_44px_rgba(16,26,43,0.12)] print:rounded-none print:shadow-none">
+      <div className="flex h-full flex-col text-[clamp(8px,1.2vw,13px)] leading-tight">
+        <header className="flex items-center justify-between gap-4 rounded-sm bg-[#10243a] px-[3%] py-[2.2%] text-white">
+          <div className="flex min-w-0 items-center gap-[2.5%]">
+            <div className="relative h-[clamp(40px,6vw,64px)] w-[clamp(40px,6vw,64px)] shrink-0 overflow-hidden rounded-sm bg-white p-1">
+              <Image src="/images/logo.jfif" alt="FCS logo" fill className="object-contain p-1" sizes="64px" />
             </div>
+            <div className="min-w-0">
+              <p className="text-[clamp(8px,1vw,11px)] font-semibold uppercase text-[#e6c988]">SAZU FCS | CHAPEL OF ZION</p>
+              <h1 className="mt-1 text-[clamp(12px,2vw,21px)] font-bold leading-tight">Fellowship of Christian Students</h1>
+              <p className="mt-1 text-[clamp(8px,0.95vw,10px)] text-white/70">Sa&apos;adu Zungur University</p>
+            </div>
+          </div>
+          <div className="shrink-0 text-right text-[clamp(8px,1vw,11px)]">
+            <p className="font-semibold uppercase tracking-[0.08em] text-[#e6c988]">Official receipt</p>
+            <p className="mt-2 font-semibold text-white">{receiptNumber}</p>
+            <p className="mt-1 text-white/75">{date}</p>
+          </div>
+        </header>
+
+        <div className="my-[2.5%] min-w-0 border-b border-[#d9e0e8] pb-[1.5%]">
+          <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">Received from</p>
+          <p className="mt-1 break-words text-[clamp(13px,2vw,21px)] font-semibold text-[#142b45]">{requestedName || ' '}</p>
+        </div>
+
+        <div className="grid min-h-0 flex-1 grid-cols-[1.35fr_0.85fr] gap-[2.5%]">
+          <div className="flex min-w-0 flex-col justify-between py-[1%]">
             <div>
-              <p className="text-[clamp(8px,1.45vw,16px)] font-bold uppercase tracking-[0.04em]">Fellowship of Christian Students</p>
-              <h1 className="mt-1 text-[clamp(15px,3.4vw,36px)] font-black uppercase tracking-[0.08em]">FCS</h1>
+              <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">The sum of</p>
+              <p className="mt-1 border-b border-[#d9e0e8] pb-2 font-medium text-[#142b45]">{amountInWords || ' '}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 border-b border-[#d9e0e8] pb-2">
+              <div className="min-w-0">
+                <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">Being</p>
+                <p className="mt-1 truncate font-medium capitalize">{paymentType || ' '}</p>
+              </div>
+              <div className="min-w-0">
+                <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">Payment method</p>
+                <p className="mt-1 truncate font-medium">{paymentMethodLabel}</p>
+              </div>
+            </div>
+            <div className="min-w-0">
+              <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">Transaction reference</p>
+              <p className="mt-1 truncate font-medium">{transactionReference || ' '}</p>
             </div>
           </div>
-          <div className="min-w-[22%] pt-1 text-right text-[clamp(8px,1.3vw,13px)]">
-            <p><span className="font-bold">No.</span> <span className="border-b border-[#174a7c] px-2 font-bold">{receiptNumber}</span></p>
-            <p className="mt-2"><span className="font-bold">Date:</span> <span className="border-b border-[#174a7c] px-2">{date}</span></p>
-          </div>
-        </div>
 
-        <div className="my-[1.5%] flex justify-center">
-          <div className="rounded-[3px] border border-[#174a7c] bg-[#27659a] px-[5%] py-[0.8%] text-[clamp(9px,1.6vw,16px)] font-bold uppercase tracking-[0.14em] text-white">
-            Official Receipt
-          </div>
-        </div>
-
-        <div className="space-y-[1.8%]">
-          <div className="flex items-end gap-2"><span className="shrink-0 italic">Received from</span><span className="min-w-0 flex-1 border-b border-[#174a7c] px-1 pb-0.5 font-sans font-medium">{requestedName || ' '}</span></div>
-          <div className="flex items-end gap-2"><span className="shrink-0 italic">The sum of</span><span className="min-w-0 flex-1 border-b border-[#174a7c] px-1 pb-0.5 font-sans font-medium">{amountInWords || ' '}</span></div>
-          <div className="flex items-end gap-2"><span className="shrink-0 italic">Naira</span><span className="w-[18%] border-b border-[#174a7c] px-1 pb-0.5 font-sans font-medium">{nairaAmount}</span><span className="shrink-0 italic">Kobo</span><span className="w-[12%] border-b border-[#174a7c] px-1 pb-0.5 font-sans font-medium">{koboAmount}</span></div>
-          <div className="flex items-end gap-2"><span className="shrink-0 italic">Being</span><span className="min-w-0 flex-1 border-b border-[#174a7c] px-1 pb-0.5 font-sans font-medium">{paymentType || ' '}</span></div>
-        </div>
-
-        <div className="mt-auto flex items-end justify-between gap-5 pt-[2.5%]">
-          <div className="double-rule border-2 border-[#174a7c] p-1">
-            <div className="border border-[#174a7c] px-[clamp(10px,2vw,22px)] py-[clamp(5px,1vw,12px)] text-center">
-              <div className="text-[clamp(8px,1.2vw,12px)] uppercase tracking-[0.12em]">Amount</div>
-              <div className="mt-1 text-[clamp(16px,3vw,31px)] font-bold font-sans">₦{formattedAmount}</div>
-            </div>
-          </div>
-          <div className="w-[34%] text-center text-[clamp(8px,1.15vw,12px)]">
-            <div className="grid grid-cols-2 border border-[#174a7c]">
-              <div className="border-r border-[#174a7c] px-1 py-1 font-bold uppercase">Cash</div>
-              <div className="px-1 py-1 font-bold uppercase">Cheque No</div>
-              <div className="min-h-[clamp(22px,4vw,42px)] border-r border-t border-[#174a7c] px-1 py-1 font-sans">{paymentMethodLabel}</div>
-              <div className="min-h-[clamp(22px,4vw,42px)] border-t border-[#174a7c] break-all px-1 py-1 font-sans">{transactionReference || ' '}</div>
+          <div className="flex min-w-0 flex-col justify-center rounded-sm border border-[#e3e7ed] bg-[#f5f7f9] px-[7%] py-[5%]">
+            <p className="text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.1em] text-[#8c6c33]">Amount received</p>
+            <p className="mt-2 whitespace-nowrap text-[clamp(15px,2.8vw,29px)] font-bold tracking-normal text-[#142b45]">₦{formattedAmount}</p>
+            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-[#d9e0e8] pt-2 text-[clamp(8px,0.95vw,10px)]">
+              <div><p className="text-[#657386]">Naira</p><p className="mt-1 font-semibold">{nairaAmount}</p></div>
+              <div><p className="text-[#657386]">Kobo</p><p className="mt-1 font-semibold">{koboAmount}</p></div>
             </div>
           </div>
         </div>
 
-        <div className="mt-[2%] flex items-end justify-between gap-4">
-          <div className="w-[28%] border-b border-[#174a7c] pb-1 text-[clamp(8px,1.2vw,12px)]"> </div>
-          <div className="text-right"><p className="text-[clamp(9px,1.35vw,14px)] font-bold uppercase tracking-[0.08em]">Received with thanks</p><p className="mt-2 text-[clamp(8px,1.1vw,11px)]">Signature</p></div>
-        </div>
+        <footer className="mt-[2.5%] flex items-end justify-between gap-4 border-t border-[#d9e0e8] pt-[2%]">
+          <div className="w-[34%]">
+            <div className="h-[clamp(16px,2.5vw,26px)] border-b border-[#657386]" />
+            <p className="mt-1 text-[clamp(8px,0.95vw,10px)] font-semibold uppercase tracking-[0.08em]">Authorized signature</p>
+            <p className="mt-1 text-[clamp(8px,0.85vw,9px)] text-[#657386]">For SAZU FCS | Chapel of Zion</p>
+          </div>
+          <div className="pb-1 text-right">
+            <p className="text-[clamp(9px,1.25vw,13px)] font-semibold uppercase tracking-[0.04em] text-[#142b45]">Received with thanks</p>
+            <p className="mt-1 text-[clamp(8px,0.9vw,10px)] text-[#657386]">Fellowship of Christian Students</p>
+          </div>
+        </footer>
       </div>
     </div>
   );
