@@ -4,17 +4,17 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-medium transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:hover:translate-y-0',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-sm text-sm font-semibold transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fcs-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:hover:translate-y-0',
   {
     variants: {
       variant: {
-        default: 'bg-ink text-paper hover:bg-ink-700',
-        gold: 'bg-gold-500 text-ink hover:bg-gold-700 hover:text-paper',
-        outline: 'border border-ink-200 bg-transparent text-ink hover:bg-ink-50',
+        default: 'bg-fcs-600 text-white hover:bg-fcs-700',
+        gold: 'bg-gold-500 text-ink-900 hover:bg-gold-300',
+        outline: 'border border-ink-200 bg-white text-ink hover:border-fcs-500 hover:bg-fcs-50',
         ghost: 'bg-transparent text-ink hover:bg-ink-50',
         link: 'bg-transparent text-ink underline-offset-4 hover:underline p-0 h-auto',
         destructive: 'bg-red-700 text-white hover:bg-red-800',
-        success: 'bg-forest-600 text-white hover:bg-forest-700',
+        success: 'bg-forest-700 text-white hover:bg-forest-900',
       },
       size: {
         default: 'h-11 px-6 py-2',

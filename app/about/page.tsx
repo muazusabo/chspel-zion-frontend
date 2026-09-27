@@ -44,32 +44,36 @@ export default async function AboutPage() {
         description="SAZU FCS exists to help students know Christ and grow together in faith throughout their time at university."
       />
 
-      <section className="container py-20 max-w-3xl">
-        <h2 className="text-2xl mb-4">Who We Are</h2>
-        <p className="text-slate-600 leading-relaxed mb-14">{about.whoWeAre}</p>
+      <section className="container max-w-5xl py-14 sm:py-20">
+        <div className="grid gap-10 border-b border-ink-100 pb-12 md:grid-cols-[0.7fr_1.3fr] md:gap-16">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.14em] text-fcs-700">Who We Are</h2>
+          <p className="text-lg leading-8 text-slate-600">{about.whoWeAre}</p>
+        </div>
 
-        <div className="grid sm:grid-cols-2 gap-10 mb-14">
-          <div>
-            <h3 className="text-xl mb-3">Our Mission</h3>
-            <p className="text-slate-600 leading-relaxed">{about.mission}</p>
+        <div className="grid gap-10 border-b border-ink-100 py-12 md:grid-cols-2 md:gap-16">
+          <div className="border-l-2 border-fcs-500 pl-5">
+            <h3 className="mb-3 text-xl">Our Mission</h3>
+            <p className="leading-7 text-slate-600">{about.mission}</p>
           </div>
-          <div>
-            <h3 className="text-xl mb-3">Our Vision</h3>
-            <p className="text-slate-600 leading-relaxed">{about.vision}</p>
+          <div className="border-l-2 border-gold-500 pl-5">
+            <h3 className="mb-3 text-xl">Our Vision</h3>
+            <p className="leading-7 text-slate-600">{about.vision}</p>
           </div>
         </div>
 
-        <h3 className="text-xl mb-3">Our Values</h3>
-        <p className="text-slate-600 leading-relaxed mb-14">{about.values}</p>
+        <div className="grid gap-6 border-b border-ink-100 py-12 md:grid-cols-[0.7fr_1.3fr] md:gap-16">
+          <h3 className="text-xl">Our Values</h3>
+          <p className="leading-7 text-slate-600">{about.values}</p>
+        </div>
 
-        <h3 className="text-xl mb-6">What We Do</h3>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-5">
+        <h3 className="mb-6 mt-12 text-xl">What We Do</h3>
+        <div className="grid grid-cols-2 gap-0 border-y border-ink-100 sm:grid-cols-4">
           {ACTIVITIES.map(({ icon: Icon, label }) => (
             <div
               key={label}
-              className="flex flex-col items-center text-center gap-3 rounded-md border border-ink-100 py-7 px-3"
+              className="flex flex-col items-center gap-3 border-b border-r border-ink-100 px-3 py-7 text-center last:border-r-0 sm:border-b-0"
             >
-              <Icon size={22} className="text-gold-700" />
+              <Icon size={22} className="text-fcs-700" />
               <span className="text-sm text-ink">{label}</span>
             </div>
           ))}

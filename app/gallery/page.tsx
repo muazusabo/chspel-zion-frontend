@@ -58,14 +58,15 @@ export default function GalleryPage() {
     <>
       <PageHeader eyebrow="Gallery" title="Moments from the fellowship" description="Worship nights, retreats, and outreach moments from the fellowship." />
 
-      <section className="container py-16">
+      <section className="container py-12 sm:py-16">
         <div className="flex flex-wrap gap-2 mb-10">
           {CATEGORIES.map((c) => (
             <button
               key={c}
               onClick={() => setCategory(c)}
-              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
-                category === c ? 'bg-ink text-paper border-ink' : 'border-ink-200 text-ink-600 hover:border-ink-400'
+              aria-pressed={category === c}
+              className={`text-xs px-3 py-1.5 rounded-sm border transition-colors ${
+                category === c ? 'bg-fcs-700 text-white border-fcs-700' : 'border-ink-200 bg-white text-ink-600 hover:border-fcs-500'
               }`}
             >
               {LABELS[c]}
@@ -85,7 +86,7 @@ export default function GalleryPage() {
               <button
                 key={img.id}
                 onClick={() => setLightboxIndex(images.indexOf(img))}
-                className="group relative block w-full overflow-hidden rounded-lg break-inside-avoid bg-ink-50 text-left"
+                className="group relative block w-full overflow-hidden rounded-sm break-inside-avoid bg-ink-50 text-left"
               >
                 <Image
                   src={img.imageUrl}

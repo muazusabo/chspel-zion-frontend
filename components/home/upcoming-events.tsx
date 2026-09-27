@@ -20,34 +20,34 @@ export function UpcomingEvents() {
   if (events && events.length === 0) return null;
 
   return (
-    <section className="container py-20 md:py-28">
-      <div className="flex items-end justify-between mb-12">
+    <section className="container py-20 md:py-24">
+      <div className="mb-10 flex items-end justify-between border-b border-ink-100 pb-6">
         <div>
-          <p className="text-gold-700 text-sm mb-4">Upcoming Events</p>
-          <h2 className="text-3xl md:text-4xl leading-tight">Come join us</h2>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-fcs-700">Upcoming Events</p>
+          <h2 className="text-3xl leading-tight md:text-4xl">Come join us</h2>
         </div>
-        <Link href="/events" className="hidden sm:block text-sm text-ink underline underline-offset-4">
+        <Link href="/events" className="hidden text-sm font-medium text-fcs-700 underline underline-offset-4 sm:block">
           See all events
         </Link>
       </div>
 
-      <div className="divide-y divide-ink-100 border-t border-b border-ink-100">
+      <div className="divide-y divide-ink-100">
         {(events ?? Array.from({ length: 3 })).map((event, i) =>
           event ? (
             <Link
               key={(event as FcsEvent).id}
               href={`/events/${(event as FcsEvent).id}`}
-              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-8 py-6 group"
+              className="group flex flex-col gap-2 py-6 transition-colors hover:bg-white sm:flex-row sm:items-center sm:gap-8 sm:px-4"
             >
               <div className="sm:w-44 shrink-0 flex items-center gap-2 text-sm text-slate-600">
-                <Calendar size={15} className="text-gold-700" />
+                <Calendar size={15} className="text-fcs-600" />
                 {formatDate((event as FcsEvent).date)}
               </div>
-              <h3 className="font-display text-lg flex-1 group-hover:text-forest-700 transition-colors">
+              <h3 className="flex-1 font-display text-lg transition-colors group-hover:text-fcs-700">
                 {(event as FcsEvent).title}
               </h3>
               <div className="flex items-center gap-2 text-sm text-slate-600">
-                <MapPin size={15} className="text-gold-700" />
+                <MapPin size={15} className="text-fcs-600" />
                 {(event as FcsEvent).venue}
               </div>
             </Link>

@@ -83,8 +83,8 @@ export default function GivePage() {
         description="Submit your offering, tithe, or donation and complete the transfer through the chapel account details provided below. Admin approval is required before a receipt is issued."
       />
 
-      <section className="container py-16 max-w-xl">
-        <div className="mb-10 rounded-md border border-ink-100 bg-ink-50 p-6">
+      <section className="container grid max-w-6xl gap-10 py-12 sm:py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <div className="h-fit border-y border-ink-100 bg-white p-6 sm:p-8">
           <div className="mb-5">
             <p className="text-xs uppercase tracking-[0.14em] text-slate-400">Chapel account</p>
             <h2 className="mt-1 font-display text-xl">Transfer details</h2>
@@ -116,8 +116,8 @@ export default function GivePage() {
         </div>
 
         {!loading && !user ? (
-          <div className="rounded-md border border-ink-100 p-8 text-center">
-            <HandCoins className="mx-auto text-gold-700 mb-4" size={28} />
+          <div className="h-fit rounded-sm border border-ink-100 bg-white p-8 text-center">
+            <HandCoins className="mx-auto mb-4 text-fcs-700" size={28} />
             <p className="font-display text-lg mb-2">Sign in to submit your giving</p>
             <p className="text-sm text-slate-600 mb-6">
               gives toward the fellowship.
@@ -134,7 +134,7 @@ export default function GivePage() {
             </p>
           </div>
         ) : (
-          <div className="space-y-8">
+          <div className="space-y-8 rounded-sm border border-ink-100 bg-white p-6 sm:p-8">
             <div>
               <Label>Giving Type</Label>
               <div className="grid gap-3 mt-2 sm:grid-cols-2">
@@ -144,10 +144,10 @@ export default function GivePage() {
                     type="button"
                     aria-pressed={givingType === type.value}
                     onClick={() => setGivingType(type.value)}
-                    className={`text-left rounded-md border p-4 transition-colors ${
+                    className={`text-left rounded-sm border p-4 transition-colors ${
                       givingType === type.value
-                        ? 'border-gold-500 bg-gold-50'
-                        : 'border-ink-100 hover:border-ink-300'
+                        ? 'border-fcs-500 bg-fcs-50'
+                        : 'border-ink-100 bg-white hover:border-fcs-300'
                     }`}
                   >
                     <p className="text-sm font-medium text-ink">{type.label}</p>
@@ -173,7 +173,7 @@ export default function GivePage() {
                     key={a}
                     type="button"
                     onClick={() => setAmount(String(a))}
-                    className="text-xs px-3 py-1.5 rounded-full border border-ink-200 text-ink-600 hover:border-gold-500"
+                    className="text-xs px-3 py-1.5 rounded-sm border border-ink-200 bg-white text-ink-600 hover:border-fcs-500"
                   >
                     ₦{a.toLocaleString()}
                   </button>

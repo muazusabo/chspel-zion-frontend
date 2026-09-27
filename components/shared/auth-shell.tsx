@@ -11,14 +11,16 @@ export function AuthShell({
   children: React.ReactNode;
 }) {
   return (
-    <section className="container py-16 md:py-24 max-w-md">
-      <Link href="/" className="flex items-center justify-center gap-2.5 mb-10">
-        <BrandLogo className="h-9 w-9 rounded-lg bg-paper p-1.5 text-ink ring-1 ring-ink-100" />
+    <section className="container max-w-lg py-12 sm:py-16 md:py-20">
+      <div className="mx-auto max-w-md rounded-sm border border-ink-100 bg-white p-6 sm:p-9">
+      <Link href="/" className="mb-9 flex items-center justify-center gap-2.5">
+        <BrandLogo className="h-9 w-9 rounded-sm border border-ink-100 bg-white p-1.5 text-fcs-700" />
         <span className="font-display text-lg text-ink">SAZU FCS</span>
       </Link>
-      <h1 className="text-2xl text-center mb-2">{title}</h1>
-      {subtitle && <p className="text-sm text-slate-500 text-center mb-10">{subtitle}</p>}
+      <h1 className="mb-2 text-center text-2xl sm:text-3xl">{title}</h1>
+      {subtitle && <p className="mb-8 text-center text-sm leading-6 text-slate-500">{subtitle}</p>}
       {children}
+      </div>
     </section>
   );
 }

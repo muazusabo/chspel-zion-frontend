@@ -25,11 +25,13 @@ export function Navbar() {
   const pathname = usePathname();
   const { user, logout, loading } = useAuth();
 
+  if (pathname.startsWith('/admin')) return null;
+
   return (
-    <header className="sticky top-0 z-50 border-t-2 border-t-gold-500 border-b border-ink-100/80 bg-paper/95 shadow-[0_4px_18px_rgba(16,26,43,0.045)] backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/95 backdrop-blur-md">
       <div className="container flex h-[4.5rem] items-center justify-between gap-4">
-        <Link href="/" className="flex shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
-          <BrandLogo className="h-10 w-10 rounded-sm bg-ink p-1.5 text-paper ring-1 ring-gold-500/50" />
+        <Link href="/" className="flex min-w-0 shrink-0 items-center gap-3" onClick={() => setOpen(false)}>
+          <BrandLogo className="h-10 w-10 rounded-sm border border-ink-100 bg-white p-1.5 text-fcs-700 shadow-sm" />
           <span className="leading-tight text-ink">
             <span className="block font-display text-base sm:text-lg">SAZU FCS</span>
             <span className="block text-[9px] font-medium tracking-[0.12em] text-slate uppercase sm:text-[10px]">
@@ -38,7 +40,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 rounded-sm bg-ink-50/70 p-1 xl:flex">
+        <nav className="hidden h-full items-center gap-1 xl:flex">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(`${link.href}/`));
 
@@ -48,13 +50,13 @@ export function Navbar() {
                 href={link.href}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
-                  'relative rounded-sm px-2.5 py-2 text-[13px] font-medium text-ink-600 transition-colors hover:bg-paper hover:text-ink',
-                  active && 'bg-paper text-ink shadow-sm',
+                  'relative flex h-full items-center px-2.5 text-[13px] font-medium text-slate-600 transition-colors hover:text-fcs-700',
+                  active && 'text-fcs-700',
                 )}
               >
                 <span className="relative z-10">{link.label}</span>
                 {active && (
-                  <span className="absolute inset-x-2 bottom-0 h-0.5 bg-gold-500" />
+                  <span className="absolute inset-x-2 bottom-0 h-0.5 bg-fcs-500" />
                 )}
               </Link>
             );
@@ -98,7 +100,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-ink-100 bg-paper/95 xl:hidden">
+        <div className="border-t border-ink-100 bg-white xl:hidden">
           <nav id="site-navigation" className="container flex flex-col gap-1 py-4">
             {NAV_LINKS.map((link) => (
               <Link

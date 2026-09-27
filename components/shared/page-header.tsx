@@ -8,14 +8,14 @@ export function PageHeader({
   description?: string;
 }) {
   return (
-    <section className="bg-ink-800 py-20 md:py-24">
+    <section className="border-b border-ink-100 bg-[#f1f5f9] py-14 sm:py-16 md:py-20">
       <div className="container">
-        {eyebrow && <p className="text-gold-300 text-sm mb-4">{eyebrow}</p>}
-        <h1 className="text-3xl md:text-5xl font-display text-paper leading-tight max-w-2xl text-balance">
+        {eyebrow && <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-fcs-700">{eyebrow}</p>}
+        <h1 className="max-w-3xl text-3xl font-display leading-tight text-fcs-900 text-balance sm:text-4xl md:text-5xl">
           {title}
         </h1>
         {description && (
-          <p className="text-ink-100 mt-5 max-w-xl leading-relaxed">{description}</p>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-slate-600">{description}</p>
         )}
       </div>
     </section>

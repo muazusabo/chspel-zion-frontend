@@ -11,7 +11,7 @@ export function Hero({ content }: { content: HomepageContent }) {
       : '/images/sunday.jpg';
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink-900">
+    <section className="relative isolate overflow-hidden bg-fcs-900">
       <Image
         src={imageUrl}
         alt=""
@@ -20,23 +20,23 @@ export function Hero({ content }: { content: HomepageContent }) {
         sizes="100vw"
         className="object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-900/90 via-ink-900/55 to-ink-900/15" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-900/55 via-transparent to-ink-900/10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#081426]/90 via-[#081426]/55 to-[#081426]/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#081426]/50 via-transparent to-[#081426]/10" />
 
       <div className="container relative flex min-h-[min(690px,calc(100svh-6rem))] items-end py-16 sm:py-20 md:items-center md:py-24">
         <div className="max-w-3xl animate-fade-up">
-          <p className="mb-5 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-gold-100 sm:text-sm">
-            <span className="h-px w-8 bg-gold-300" />
+          <p className="mb-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-white/80 sm:text-sm">
+            <span className="h-px w-8 bg-white/70" />
             {content.heroSubtitle || 'Fellowship of Christian Students'}
           </p>
-          <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] text-paper text-balance sm:text-6xl md:text-7xl">
+          <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] text-white text-balance sm:text-6xl md:text-7xl">
             {content.heroTitle || 'SAZU FCS'}
           </h1>
-          <p className="mt-6 max-w-2xl text-sm font-semibold leading-relaxed text-gold-100 text-balance sm:text-base">
+          <p className="mt-6 max-w-2xl text-sm font-semibold leading-relaxed text-white/90 text-balance sm:text-base">
             WELCOME TO CHAPEL OF ZION WHERE LOVE IS SHARED, LIVES ARE TRANSFORMED,
             EVERYBODY IS SOMEBODY, AND JESUS IS LORD!
           </p>
-          <p className="mt-6 max-w-2xl font-sans text-lg leading-relaxed text-paper/90 text-balance sm:text-xl">
+          <p className="mt-5 max-w-2xl font-sans text-lg leading-relaxed text-white/80 text-balance sm:text-xl">
             {content.heroDescription ||
               'Growing in Faith. Building Community. Serving with Purpose.'}
           </p>
@@ -47,7 +47,7 @@ export function Hero({ content }: { content: HomepageContent }) {
             </Link>
             <Link
               href="/about"
-              className="inline-flex h-12 items-center gap-2 px-4 text-sm font-medium text-paper transition-colors hover:text-gold-100"
+              className="inline-flex h-12 items-center gap-2 px-4 text-sm font-medium text-white transition-colors hover:text-white/75"
             >
               Explore FCS <ArrowUpRight size={16} aria-hidden="true" />
             </Link>

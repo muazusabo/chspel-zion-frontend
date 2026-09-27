@@ -52,25 +52,25 @@ export default function ContactPage() {
     <>
       <PageHeader eyebrow="Get In Touch" title="Contact Us" description="Questions, prayer requests, or just want to say hello? We'd love to hear from you." />
 
-      <section className="container py-16">
-        <div className="grid md:grid-cols-5 gap-14">
-          <div className="md:col-span-2 space-y-8">
-            <div className="flex gap-4">
-              <Mail size={20} className="text-gold-700 shrink-0 mt-0.5" />
+      <section className="container py-12 sm:py-16">
+        <div className="grid gap-10 md:grid-cols-5 md:gap-14">
+          <div className="h-fit space-y-0 border-y border-ink-100 bg-white px-5 md:col-span-2">
+            <div className="flex gap-4 border-b border-ink-100 py-6 last:border-b-0">
+              <Mail size={19} className="mt-0.5 shrink-0 text-fcs-700" />
               <div>
                 <p className="text-sm font-medium text-ink">Email</p>
                 <p className="text-sm text-slate-600">{settings?.contactEmail || '[CONTACT EMAIL]'}</p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <Phone size={20} className="text-gold-700 shrink-0 mt-0.5" />
+            <div className="flex gap-4 border-b border-ink-100 py-6 last:border-b-0">
+              <Phone size={19} className="mt-0.5 shrink-0 text-fcs-700" />
               <div>
                 <p className="text-sm font-medium text-ink">Phone</p>
                 <p className="text-sm text-slate-600">{settings?.phoneNumber || '[PHONE NUMBER]'}</p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <MapPin size={20} className="text-gold-700 shrink-0 mt-0.5" />
+            <div className="flex gap-4 border-b border-ink-100 py-6 last:border-b-0">
+              <MapPin size={19} className="mt-0.5 shrink-0 text-fcs-700" />
               <div>
                 <p className="text-sm font-medium text-ink">Location</p>
                 <p className="text-sm text-slate-600">{settings?.address || '[FELLOWSHIP ADDRESS]'}</p>
@@ -78,7 +78,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="md:col-span-3">
+          <div className="rounded-sm border border-ink-100 bg-white p-6 sm:p-8 md:col-span-3">
             {submitted ? (
               <div className="rounded-md border border-forest-100 bg-forest-50 p-8 flex flex-col items-center text-center">
                 <CheckCircle2 className="text-forest-700 mb-3" size={32} />

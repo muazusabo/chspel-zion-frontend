@@ -6,12 +6,13 @@
   :root {
     --font-fraunces: 'Fraunces Variable';
     --font-inter: 'DM Sans Variable';
-    --site-background: #faf9f6;
-    --site-surface: #fffefb;
-    --site-border: #e5e4df;
-    --site-navy: #101a2b;
+    --site-background: #f8fafc;
+    --site-surface: #ffffff;
+    --site-border: #e2e8f0;
+    --site-navy: #0b1b33;
+    --site-blue: #1e5aa8;
     --site-gold: #b8924a;
-    --site-radius: 8px;
+    --site-radius: 6px;
   }
 
   * {
@@ -36,6 +37,11 @@
   h1, h2, h3, h4 {
     @apply font-display font-semibold text-ink;
     letter-spacing: 0;
+  }
+
+  ::selection {
+    color: #ffffff;
+    background: #1e5aa8;
   }
 
   :focus-visible {

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { api } from '@/lib/api';
+import { api, uploadImage } from '@/lib/api';
 import { AdminPageHeader } from '@/components/admin/admin-page-header';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,8 +11,10 @@ import { useSavedMessage } from '@/lib/use-saved-message';
 import type { FellowshipSettings } from '@/types';
 
 export default function AdminSettingsPage() {
-  const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FellowshipSettings>();
+  const { register, handleSubmit, reset, setValue, watch, formState: { isSubmitting } } = useForm<FellowshipSettings>();
   const { message, error, save, setError } = useSavedMessage();
+  const logoInputRef = useRef<HTMLInputElement>(null);
+  const [isUploadingLogo, setIsUploadingLogo] = useState(false);
 
   useEffect(() => {
     api.get<FellowshipSettings>('/api/settings', { skipAuth: true }).then(reset);
@@ -27,9 +29,25 @@ export default function AdminSettingsPage() {
     }
   };
 
+  const onLogoChange = async () => {
+    const file = logoInputRef.current?.files?.[0];
+    if (!file) return;
+
+    setIsUploadingLogo(true);
+    try {
+      const { url } = await uploadImage(file, 'settings');
+      setValue('logoUrl', url, { shouldDirty: true });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Logo upload failed.');
+    } finally {
+      setIsUploadingLogo(false);
+      if (logoInputRef.current) logoInputRef.current.value = '';
+    }
+  };
+
   return (
     <>
-      <AdminPageHeader title="Settings" description="Fellowship name, contact info, and social links" />
+      <AdminPageHeader title="Settings" description="Fellowship name, logo, contact info, and social links" />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 max-w-xl">
         <div className="grid sm:grid-cols-2 gap-4">
           <div>
@@ -42,9 +60,19 @@ export default function AdminSettingsPage() {
           </div>
         </div>
         <div>
-          <Label htmlFor="logoUrl">Logo URL</Label>
+          <Label htmlFor="logoFile">Logo Image</Label>
+          <input
+            ref={logoInputRef}
+            id="logoFile"
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/gif,image/avif"
+            className="mt-2 block w-full text-sm text-slate-500 file:mr-4 file:rounded-md file:border-0 file:bg-gold-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-ink"
+            onChange={onLogoChange}
+          />
+          {isUploadingLogo && <p className="mt-2 text-sm text-ink-600">Uploading logo…</p>}
+          <Label htmlFor="logoUrl" className="mt-3">Logo URL</Label>
           <Input id="logoUrl" type="url" placeholder="https://.../logo.png" {...register('logoUrl')} />
-          <p className="mt-1 text-xs text-slate-500">Use a square PNG, JPG, or WebP logo URL.</p>
+          <p className="mt-1 text-xs text-slate-500">Upload a logo or paste an image URL, then save settings.</p>
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <div>

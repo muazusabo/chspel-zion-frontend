@@ -87,21 +87,21 @@ function DashboardInner() {
   };
 
   const statCards = [
-    { label: 'Total giving', value: stats ? formatCurrency(stats.totalGiving) : '—', icon: Landmark, tone: 'bg-gold-50 text-gold-700' },
+    { label: 'Total giving', value: stats ? formatCurrency(stats.totalGiving) : '—', icon: Landmark, tone: 'bg-fcs-50 text-fcs-700' },
     { label: 'Donations', value: stats ? formatCurrency(stats.totalDonations) : '—', icon: HandCoins, tone: 'bg-forest-50 text-forest-700' },
     { label: 'Offerings', value: stats ? formatCurrency(stats.totalOfferings) : '—', icon: Wallet, tone: 'bg-ink-50 text-ink-600' },
     { label: 'My receipts', value: stats ? String(stats.totalReceipts) : '—', icon: ReceiptIcon, tone: 'bg-gold-50 text-gold-700' },
   ];
 
   return (
-    <section className="container max-w-7xl py-8 md:py-12">
+    <section className="container max-w-[1320px] py-8 md:py-12">
       <div className="mb-9 flex flex-col gap-5 border-b border-ink-100 pb-8 md:mb-10 md:flex-row md:items-end md:justify-between md:pb-10">
         <div>
-          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-gold-700">Member dashboard</p>
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-fcs-700">Member dashboard</p>
           <h1 className="text-3xl md:text-4xl">Welcome, {user?.fullName.split(' ')[0]}</h1>
           <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-600">Your giving records and fellowship updates, together in one place.</p>
         </div>
-        <Link href="/give/account" className="inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-gold-700">View transfer details <ArrowUpRight size={16} /></Link>
+        <Link href="/give/account" className="inline-flex items-center gap-2 text-sm font-medium text-fcs-700 hover:text-fcs-900">View transfer details <ArrowUpRight size={16} /></Link>
       </div>
       {loadError && <p className="mb-6 border border-gold-200 bg-gold-50 px-4 py-3 text-sm text-ink-700">Some dashboard information could not be loaded. Please refresh and try again.</p>}
       {loading && <p className="mb-6 text-sm text-slate-500">Loading your fellowship dashboard…</p>}
@@ -111,10 +111,10 @@ function DashboardInner() {
       </div>
 
       <div className="mb-12 grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <Card className="overflow-hidden border-ink-100">
+        <Card className="overflow-hidden border-ink-100 shadow-none">
           <CardHeader className="border-b border-ink-100 pb-5">
             <div className="flex items-start justify-between gap-4">
-              <div><CardTitle className="flex items-center gap-2 text-xl"><Landmark size={20} className="text-gold-700" /> Chapel Account Details</CardTitle><CardDescription className="mt-2">Use these details for offline bank transfers.</CardDescription></div>
+              <div><CardTitle className="flex items-center gap-2 text-xl"><Landmark size={20} className="text-fcs-600" /> Chapel Account Details</CardTitle><CardDescription className="mt-2">Use these details for offline bank transfers.</CardDescription></div>
               <span className="rounded-full bg-forest-50 px-3 py-1 text-xs font-medium text-forest-700">Offline giving</span>
             </div>
           </CardHeader>
@@ -126,7 +126,7 @@ function DashboardInner() {
         </Card>
 
         <Card className="border-ink-100">
-          <CardHeader className="pb-4"><CardTitle className="flex items-center gap-2 text-xl"><ReceiptIcon size={20} className="text-gold-700" /> Submit Transfer</CardTitle><CardDescription className="mt-2">Send your transfer evidence for admin approval. Your receipt is generated after approval.</CardDescription></CardHeader>
+          <CardHeader className="pb-4"><CardTitle className="flex items-center gap-2 text-xl"><ReceiptIcon size={20} className="text-fcs-600" /> Submit Transfer</CardTitle><CardDescription className="mt-2">Send your transfer evidence for admin approval. Your receipt is generated after approval.</CardDescription></CardHeader>
           <CardContent>
             <form onSubmit={requestReceipt} className="space-y-4"><div><Label htmlFor="receipt-amount">Amount transferred (NGN)</Label><Input id="receipt-amount" type="number" min={100} value={receiptAmount} onChange={(event) => setReceiptAmount(event.target.value)} placeholder="e.g. 5000" required /></div><div><Label htmlFor="transaction-screenshot">Transaction screenshot</Label><Input id="transaction-screenshot" name="transactionScreenshot" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" required /><p className="mt-1 text-xs text-slate-500">Upload a clear screenshot of your successful bank transfer.</p></div><div><Label htmlFor="receipt-date">Transfer date</Label><Input id="receipt-date" name="transferDate" type="date" required /></div><Button type="submit" variant="gold" className="w-full" disabled={receiptSubmitting}>{receiptSubmitting ? 'Submitting…' : 'Submit for approval'}</Button></form>
             {receiptError && <p className="mt-3 text-xs text-red-700">{receiptError}</p>}

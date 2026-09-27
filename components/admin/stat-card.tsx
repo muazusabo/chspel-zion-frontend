@@ -12,10 +12,12 @@ export function StatCard({
 }) {
   return (
     <Card>
-      <CardContent className="p-6">
-        <Icon size={18} className="text-gold-700 mb-4" />
-        <p className="text-2xl font-display">{value}</p>
-        <p className="text-sm text-slate-500 mt-1">{label}</p>
+      <CardContent className="p-5 sm:p-6">
+        <div className="mb-5 flex h-9 w-9 items-center justify-center rounded-sm bg-fcs-50 text-fcs-700">
+          <Icon size={17} />
+        </div>
+        <p className="text-2xl font-display tabular-nums">{value}</p>
+        <p className="mt-1 text-sm text-slate-500">{label}</p>
       </CardContent>
     </Card>
   );

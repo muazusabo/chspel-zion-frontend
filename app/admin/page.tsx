@@ -40,9 +40,9 @@ export default function AdminDashboardPage() {
 
   return (
     <>
-      <AdminPageHeader title="Dashboard" description="Overview of fellowship activity" />
+      <AdminPageHeader title="Fellowship overview" description="A live view of membership, giving, and what needs attention." />
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Total Members" value={stats.totalMembers} icon={Users} />
         <StatCard label="Total Donations" value={formatCurrency(stats.totalDonations)} icon={HandCoins} />
         <StatCard label="Total Offerings" value={formatCurrency(stats.totalOfferings)} icon={Wallet} />
@@ -54,10 +54,10 @@ export default function AdminDashboardPage() {
       </div>
 
       {months.length > 0 && (
-        <div className="rounded-md border border-ink-100 bg-paper p-6">
+        <div className="rounded-sm border border-ink-100 bg-white p-6 sm:p-8">
           <div className="flex items-center gap-2 mb-6">
-            <TrendingUp size={16} className="text-gold-700" />
-            <h2 className="text-lg font-display">Giving — last {months.length} months</h2>
+            <TrendingUp size={16} className="text-fcs-600" />
+            <h2 className="text-lg font-display">Giving activity <span className="font-sans text-sm font-normal text-slate-500">· last {months.length} months</span></h2>
           </div>
           <div className="flex items-end gap-4 h-48">
             {months.map((m) => {
@@ -66,16 +66,16 @@ export default function AdminDashboardPage() {
               return (
                 <div key={m} className="flex-1 flex flex-col items-center gap-2">
                   <div className="w-full flex items-end justify-center gap-1 h-40">
-                    <div className="w-1/2 bg-forest-500 rounded-t-sm" style={{ height: `${donationH}%` }} />
-                    <div className="w-1/2 bg-gold-500 rounded-t-sm" style={{ height: `${offeringH}%` }} />
+                    <div className="w-1/2 rounded-t-sm bg-fcs-500" style={{ height: `${donationH}%` }} />
+                    <div className="w-1/2 rounded-t-sm bg-gold-500" style={{ height: `${offeringH}%` }} />
                   </div>
                   <p className="text-[10px] text-slate-400">{m.slice(5)}/{m.slice(2, 4)}</p>
                 </div>
               );
             })}
           </div>
-          <div className="flex gap-5 mt-5 text-xs text-slate-500">
-            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-forest-500" /> Donations</span>
+          <div className="mt-5 flex gap-5 text-xs text-slate-500">
+            <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-fcs-500" /> Donations</span>
             <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-gold-500" /> Offerings</span>
           </div>
         </div>
